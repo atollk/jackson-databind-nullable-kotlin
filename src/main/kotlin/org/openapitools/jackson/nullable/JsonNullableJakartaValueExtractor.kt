@@ -8,14 +8,11 @@ import jakarta.validation.valueextraction.ValueExtractor
  */
 @UnwrapByDefault
 class JsonNullableJakartaValueExtractor :
-    ValueExtractor<JsonNullable<*>?> {
-    override fun extractValues(originalValue: JsonNullable<*>?, receiver: ValueExtractor.ValueReceiver) {
-        JsonNullableValueExtractorHelper.extractValues(originalValue,
-            JsonNullableValueExtractorHelper.ValueSetter { s: String?, o: Any? ->
-                receiver.value(
-                    s,
-                    o
-                )
-            })
+    ValueExtractor<JsonNullable<*>> {
+    override fun extractValues(originalValue: JsonNullable<*>, receiver: ValueExtractor.ValueReceiver) {
+        JsonNullableValueExtractorHelper.extractValues(
+            originalValue,
+            receiver::value
+        )
     }
 }

@@ -2,7 +2,7 @@ package org.openapitools.jackson.nullable
 
 internal object JsonNullableValueExtractorHelper {
     fun extractValues(originalValue: JsonNullable<*>, valueSetter: ValueSetter) {
-        if (originalValue.isPresent()) {
+        if (originalValue.isPresent) {
             valueSetter.apply(null, originalValue.get())
         }
     }

@@ -15,8 +15,8 @@ class JsonNullableSerializer :
     / **********************************************************
      */
     constructor(
-        fullType: ReferenceType?, staticTyping: Boolean,
-        vts: TypeSerializer?, ser: JsonSerializer<Any?>?
+        fullType: ReferenceType, staticTyping: Boolean,
+        vts: TypeSerializer, ser: JsonSerializer<Any?>
     ) : super(fullType, staticTyping, vts, ser)
 
     protected constructor(
@@ -56,7 +56,7 @@ class JsonNullableSerializer :
     / **********************************************************
      */
     override fun _isValuePresent(value: JsonNullable<*>): Boolean {
-        return value.isPresent()
+        return value.isPresent
     }
 
     override fun _getReferenced(value: JsonNullable<*>): Any {
@@ -64,7 +64,7 @@ class JsonNullableSerializer :
     }
 
     override fun _getReferencedIfPresent(value: JsonNullable<*>): Any {
-        return (if (value.isPresent()) value.get() else null)!!
+        return (if (value.isPresent) value.get() else null)!!
     }
 
     companion object {

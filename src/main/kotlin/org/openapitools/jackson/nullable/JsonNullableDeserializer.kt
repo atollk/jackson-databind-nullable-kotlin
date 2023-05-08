@@ -16,7 +16,7 @@ class JsonNullableDeserializer(
     fullType: JavaType?, inst: ValueInstantiator?,
     typeDeser: TypeDeserializer?, deser: JsonDeserializer<*>?
 ) :
-    ReferenceTypeDeserializer<JsonNullable<Any>>(fullType, inst, typeDeser, deser) {
+    ReferenceTypeDeserializer<JsonNullable<Any?>>(fullType, inst, typeDeser, deser) {
     private var isStringDeserializer = false
 
     /*
@@ -38,7 +38,7 @@ class JsonNullableDeserializer(
     / **********************************************************
      */
     @Throws(IOException::class)
-    override fun deserialize(p: JsonParser, ctxt: DeserializationContext): JsonNullable<Any> {
+    override fun deserialize(p: JsonParser, ctxt: DeserializationContext): JsonNullable<Any?> {
         val t = p.currentToken
         if (t == JsonToken.VALUE_STRING && !isStringDeserializer) {
             val str = p.text.trim { it <= ' ' }
@@ -63,7 +63,7 @@ class JsonNullableDeserializer(
         return JsonNullable.undefined<Any>()
     }
 
-    override fun getNullValue(ctxt: DeserializationContext): JsonNullable<Any> {
+    override fun getNullValue(ctxt: DeserializationContext): JsonNullable<Any?> {
         return JsonNullable.of(null)
     }
 
@@ -71,15 +71,15 @@ class JsonNullableDeserializer(
         return JsonNullable.undefined<Any>()
     }
 
-    override fun referenceValue(contents: Any): JsonNullable<Any> {
+    override fun referenceValue(contents: Any): JsonNullable<Any?> {
         return JsonNullable.of(contents)
     }
 
-    override fun getReferenced(reference: JsonNullable<Any>): Any {
+    override fun getReferenced(reference: JsonNullable<Any?>): Any? {
         return reference.get()
     }
 
-    override fun updateReference(reference: JsonNullable<Any>, contents: Any): JsonNullable<Any> {
+    override fun updateReference(reference: JsonNullable<Any?>, contents: Any): JsonNullable<Any?> {
         return JsonNullable.of(contents)
     }
 
