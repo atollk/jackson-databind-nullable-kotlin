@@ -9,6 +9,7 @@ syntax: glob
 
 # building
 target
+/.gradle/
 
 # Eclipse
 .classpath
